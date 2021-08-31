@@ -1,0 +1,34 @@
+<form (ngSubmit)="signupform.valid && onSubmit()" #signupform="ngForm">
+    <div>
+        <label for="firstname">Firstname</label><br />
+        <input name="firstname" [(ngModel)]="user.firstname" type="text" #firstname="ngModel" required maxlength="15" minlength="3">
+    </div><br />
+    <div *ngIf="signupform.submitted && firstname.errors">
+        <span *ngIf="firstname.errors?.required">The field firstname is required</span>
+        <span *ngIf="firstname.errors?.minlength">Your firstname should be at least 3 characters long</span>
+        <span *ngIf="firstname.errors?.maxlength">Your firstname should be at most 15 characters long</span>
+    </div><br />
+    <div>
+        <label for="lastname">Lastname</label><br />
+        <input name="lastname" [(ngModel)]="user.lastname" type="text" #lastname="ngModel" required maxlength="15" minlength="3">
+    </div><br />
+    <div *ngIf="signupform.submitted && lastname.errors">
+        <span *ngIf="lastname.errors?.required">The field lastname is required</span>
+        <span *ngIf="lastname.errors?.minlength">Your lastname should be at least 3 characters long</span>
+        <span *ngIf="lastname.errors?.maxlength">Your lastname should be at most 15 characters long</span>
+    </div><br />
+    <div>
+        <label for="email">Email</label><br />
+        <input type="email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
+    </div><br />
+    <div *ngIf="signupform.submitted && email.errors">
+        <span *ngIf="email.errors?.required">The field email is required</span>
+        <span *ngIf="email.errors?.email">The email format is invalid</span>
+    </div><br />
+    <div>
+        <label for="password">Password</label><br />
+        <input name="password" [(ngModel)]="user.password" type="password" #password="ngModel" required >
+    </div><br />
+    <button type="reset">Reset</button>
+    <button type="submit">Register</button>
+</form>
